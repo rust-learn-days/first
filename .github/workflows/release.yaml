@@ -109,13 +109,13 @@ jobs:
         shell: bash
         run: |
           set -x
-          VERSION=v${{ needs.parse.outputs.version }}
+          VERSION=${{ needs.parse.outputs.version }}
           if [[ $VERSION == *"-alpha"* || $VERSION == *"-beta"* || $VERSION == *"-rc"* ]]; then
-            gh release create "$VERSION" artifacts/*/* --draft --title "$VERSION" --notes-file CHANGES.md
+            gh release create "v$VERSION" artifacts/*/* --draft --title "$VERSION" --notes-file CHANGES.md
           else
-            gh release create "$VERSION" artifacts/*/* --title "$VERSION" --notes-file CHANGES.md
+            gh release create "v$VERSION" artifacts/*/* --title "$VERSION" --notes-file CHANGES.md
           fi
-          gh release upload  "$VERSION" artifacts/*/*
+          gh release upload  "v$VERSION" artifacts/*/*
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_NAME: "v${{ needs.parse.outputs.version }}"
