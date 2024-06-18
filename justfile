@@ -18,11 +18,6 @@ build:
     rustup target add ${target}
     cargo build --target  ${target}
 
-build-release:
-    rustup target add ${target}
-    cargo build --release --target  ${target}
-
-
 cross-build:
     rustup target add ${target}
     cross build --target  ${target}
@@ -30,3 +25,11 @@ cross-build:
 cross-build-release:
     rustup target add ${target}
     cross build --release --target  ${target}
+    mkdir -p output/${target}
+    cp target/${target}/release/first output/${target}/first
+
+build-release:
+    rustup target add ${target}
+    cargo build --release --target  ${target}
+    mkdir -p output/${target}
+    cp target/${target}/release/first output/${target}/first
