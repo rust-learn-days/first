@@ -100,26 +100,20 @@ jobs:
         uses: kenji-miyake/setup-git-cliff@v2
       - name: Run git-cliff
         run: |
+          just setup-git
           git cliff -vv --latest --strip header > CHANGES.md
           cat CHANGES.md
-      - name: Create release draft
+      - name: Create release
         shell: bash
         run: |
           set -x
-          VERSION=${{ needs.parse.outputs.version }}
+          VERSION=v${{ needs.parse.outputs.version }}
           if [[ $VERSION == *"-alpha"* || $VERSION == *"-beta"* || $VERSION == *"-rc"* ]]; then
             gh release create "$VERSION" artifacts/*/* --draft --title "$VERSION" --notes-file CHANGES.md
           else
             gh release create "$VERSION" artifacts/*/* --title "$VERSION" --notes-file CHANGES.md
           fi
+          gh release upload  "$VERSION" artifacts/*/*
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_NAME: "v${{ needs.parse.outputs.version }}"
-      - name: Create release draft
-        shell: bash
-        run: |
-          set -x
-          gh release upload "v${{ needs.parse.outputs.version }}" artifacts/*/*
-        env:
-          GH_TOKEN: ${{ github.token }}
           RELEASE_NAME: "v${{ needs.parse.outputs.version }}"

@@ -36,3 +36,8 @@ build-release:
 
 changelog:
     git-cliff --config cliff.toml > CHANGELOG.md
+
+setup-git:
+    git config --global user.name "cuisongliu"
+    git remote add origin https://github.com/rust-learn-days/first.git
+
