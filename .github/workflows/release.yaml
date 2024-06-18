@@ -76,7 +76,7 @@ jobs:
           path: output/${{ matrix.target }}/*.tar.gz
 
   release:
-    name: Create Draft Release
+    name: Create Release
     runs-on: ubuntu-20.04
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
@@ -96,7 +96,9 @@ jobs:
         uses: kenji-miyake/setup-git-cliff@v1
       - name: Generate a changelog
         run: |
-          GITHUB_TOKEN="${GH_TOKEN}" git-cliff -vv --latest --strip header --github-repo "${{ github.repository }}" --output CHANGES.md
+          git log > log.txt
+          cat log.txt
+          git-cliff -vv --latest --strip header --github-repo "${{ github.repository }}" --output CHANGES.md
       - name: Create release
         shell: bash
         run: |
