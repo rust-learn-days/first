@@ -109,13 +109,13 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: "${{ needs.parse.outputs.version }} Release"
+          name: "v${{ needs.parse.outputs.version }}"
           body: ${{ steps.git-cliff.outputs.content }}
       - name: Create release draft
         shell: bash
         run: |
           set -x
-          gh release upload "${{ needs.parse.outputs.version }} Release" artifacts/*/*
+          gh release upload "v${{ needs.parse.outputs.version }}" artifacts/*/*
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_NAME: "${{ needs.parse.outputs.version }} Release"
+          RELEASE_NAME: "v${{ needs.parse.outputs.version }}"
