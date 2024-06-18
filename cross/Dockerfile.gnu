@@ -14,5 +14,5 @@ RUN dpkg --add-architecture ${CROSS_DEB_ARCH} && \
     # dependencies to build wasmedge-sys
     libzstd-dev:${CROSS_DEB_ARCH}
 
-COPY busctl.sh /bin/busctl
+COPY cross/busctl.sh /bin/busctl
 RUN chmod +x /bin/busctl
