@@ -39,5 +39,5 @@ changelog:
 
 setup-git:
     git config --global user.name "cuisongliu"
-    git remote add origin https://github.com/rust-learn-days/first.git
+    git remote add origin https://github.com/rust-learn-days/first.git || true
 
