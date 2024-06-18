@@ -15,9 +15,11 @@ init:
 
 
 build:
+    rustup target add ${target:-x86_64-unknown-linux-musl}
     cargo build --target  ${target:-x86_64-unknown-linux-musl}
 
 build-release:
+    rustup target add ${target:-x86_64-unknown-linux-musl}
     cargo build --release --target  ${target:-x86_64-unknown-linux-musl}
 
 build-all:
