@@ -96,9 +96,8 @@ jobs:
         uses: kenji-miyake/setup-git-cliff@v1
       - name: Generate a changelog
         run: |
-          git log > log.txt
-          cat log.txt
-          git-cliff -vv --latest --strip header --github-repo "${{ github.repository }}" --output CHANGES.md
+          git-cliff -vv --latest --strip header --github-repo "${{ github.repository }}" --github-token "${{ secrets.GITHUB_TOKEN }}" --output CHANGES.md
+          cat CHANGES.md
       - name: Create release
         shell: bash
         run: |
