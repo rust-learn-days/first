@@ -16,13 +16,13 @@ RUN apk-${MARCH} add \
 
 # configure libsecccomp-rs to use static linking
 ENV LIBSECCOMP_LINK_TYPE="static"
-ENV LIBSECCOMP_LIB_PATH="${CROSS_SYSROOT}/lib"    
+ENV LIBSECCOMP_LIB_PATH="${CROSS_SYSROOT}/lib"
 
 # configure wasmedge-sys to link stdc++ statically
 ENV WASMEDGE_DEP_STDCXX_LINK_TYPE="static"
 ENV WASMEDGE_DEP_STDCXX_LIB_PATH="${CROSS_SYSROOT}/lib"
 
-COPY hack/busctl.sh /bin/busctl
+COPY busctl.sh /bin/busctl
 RUN chmod +x /bin/busctl
 
 # wasmedge-sys (through llvm) needs some symbols defined in libgcc
