@@ -39,5 +39,4 @@ changelog:
 
 setup-git:
     git config --global user.name "cuisongliu"
-    git remote add origin https://github.com/rust-learn-days/first.git || true
-
+    git config --global user.email "cuisongliu@qq.com"
