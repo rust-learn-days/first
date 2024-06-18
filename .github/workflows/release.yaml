@@ -115,7 +115,6 @@ jobs:
           else
             gh release create "v$VERSION" artifacts/*/* --title "$VERSION" --notes-file CHANGES.md
           fi
-          gh release upload  "v$VERSION" artifacts/*/*
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_NAME: "v${{ needs.parse.outputs.version }}"
