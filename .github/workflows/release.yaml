@@ -115,6 +115,7 @@ jobs:
         shell: bash
         run: |
           set -x
+          gh release create "v${{ needs.parse.outputs.version }}" --generate-notes --draft
           gh release upload "v${{ needs.parse.outputs.version }}" artifacts/*/*
         env:
           GH_TOKEN: ${{ github.token }}

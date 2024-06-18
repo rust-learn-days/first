@@ -33,3 +33,6 @@ build-release:
     cargo build --release --target  ${target}
     mkdir -p output/${target}
     cp target/${target}/release/first output/${target}/first
+
+changelog:
+    git-cliff --config cliff.toml > CHANGELOG.md
