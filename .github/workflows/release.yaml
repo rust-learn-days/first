@@ -60,6 +60,9 @@ jobs:
         run: |
           echo "CARGO=cross" >> ${GITHUB_ENV}
           echo "TARGET=${{ matrix.target }}" >> ${GITHUB_ENV}
+          echo "CROSS_BUILD_OPTS=--quiet" >> ${GITHUB_ENV}
+          echo "CROSS_CONTAINER_OPTS=--privileged --user `id -u`:`id -g` --pid=host -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v/run:/run --mount=type=bind,source=/tmp,destination=/tmp,bind-propagation=shared" >> ${GITHUB_ENV}
+
       - name: Release build
         run: target=${{ matrix.target }} just build-release
       - name: Create output directory
