@@ -21,3 +21,12 @@ build:
 build-release:
     rustup target add ${target}
     cargo build --release --target  ${target}
+
+
+cross-build:
+    rustup target add ${target}
+    cargo build --target  ${target}
+
+cross-build-release:
+    rustup target add ${target}
+    cargo build --release --target  ${target}
