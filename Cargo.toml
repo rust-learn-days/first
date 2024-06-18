@@ -1,9 +1,8 @@
-cargo-features = ["edition2024"]
 [package]
 name = "first"
 version = "0.1.0"
 authors = ["cuisongliu <cuisongliu@qq.com>"]
-edition = "2024"
+edition = "2021"
 description = "first, a rusty-hermit application"
 repository = "https://github.com/rust-learn-days/first"
 [dependencies]
