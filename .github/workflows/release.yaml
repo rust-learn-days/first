@@ -68,7 +68,9 @@ jobs:
       - name: Create output directory
         run: mkdir output
       - name: Create artifact
-        run: tar -zcvf first-${{ matrix.target }}.tar.gz first README.md LICENSE
+        run: |
+          ls -l target/${{ matrix.target }}/release
+          tar -zcvf first-${{ matrix.target }}.tar.gz first README.md LICENSE
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
