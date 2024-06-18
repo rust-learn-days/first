@@ -36,7 +36,3 @@ build-release:
 
 changelog:
     git-cliff --config cliff.toml > CHANGELOG.md
-
-setup-git:
-    git config --global user.name "cuisongliu"
-    git config --global user.email "cuisongliu@qq.com"

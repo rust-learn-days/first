@@ -96,15 +96,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: artifacts
-      - name: Set up git-cliff
-        uses: kenji-miyake/setup-git-cliff@v2
-      - name: Install just
-        uses: taiki-e/install-action@just
-      - name: Run git-cliff
-        run: |
-          just setup-git
-          git cliff -vv --latest --strip header > CHANGES.md
-          cat CHANGES.md
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v3
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: -vv --latest --strip header
+        env:
+          OUTPUT: CHANGES.md
+          GITHUB_REPO: ${{ github.repository }}
       - name: Create release
         shell: bash
         run: |
